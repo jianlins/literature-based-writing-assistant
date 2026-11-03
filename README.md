@@ -1,7 +1,8 @@
-# zotero-overleaf-research-agent
+# Literature-Based Writing Assistant
 
-A credential-free research-manuscript workflow for projects that use LaTeX, an
-Overleaf project in visible Chrome, and a local Zotero library.
+A credential-free, researcher-controlled assistant for literature-based
+academic writing. It connects visible browser research, a local Zotero library,
+project files, and Google Docs or Overleaf.
 
 It intentionally versions the workflow, not private state: no API keys,
 browser cookies, Zotero library data, or machine-specific Chrome ports belong
@@ -53,6 +54,19 @@ in the visible browser, save confirmed records to Zotero, and incorporate
 citations into Overleaf. Treat externally generated references as leads to
 verify, rather than importing them into a manuscript unchecked.
 
+## How the architecture fits together
+
+![Diagram of the architecture for literature-based academic writing](docs/assets/research-architecture.svg)
+
+Chatbot apps such as Codex, Antigravity, and OpenCode coordinate the work; they
+do not replace the researcher's judgment. They connect visible browser-based
+research, a Zotero library that remains the bibliographic source of truth, the
+versioned local project folder, and the writing surface that fits the project:
+Google Docs for collaborative drafting or Overleaf for compile-verified LaTeX.
+Specialist skills provide the controlled connections for browser research,
+Zotero, Google Docs, and Overleaf, while local-only configuration keeps browser
+profiles and credentials outside Git.
+
 ### Limits and required human checks
 
 This workflow makes a *fabricated* reference much less likely when every
@@ -75,8 +89,8 @@ report or correct any uncertain source before sharing the manuscript.
 
 ## What it provides
 
-- `.agents/agents/zotero-overleaf-research-agent/AGENT.md`: the shared
-  research-manuscript Agent definition, with Codex, Claude, Gemini, and
+- `.agents/agents/literature-based-writing-assistant/AGENT.md`: the shared
+  Literature-Based Writing Assistant definition, with Codex, Claude, Gemini, and
   OpenCode entry points.
 - `AGENTS.md`: project instructions for research, Overleaf, and Zotero work.
 - `.agents/skills/visible-research-cdp`: visible Chrome/CDP workflow for
@@ -115,8 +129,8 @@ Choose the starting path that fits your project:
    is useful, make it shallow so you do not fetch its full history:
 
 ```bash
-git clone --depth 1 https://github.com/jianlins/zotero-overleaf-research-agent.git
-cd zotero-overleaf-research-agent
+git clone --depth 1 https://github.com/jianlins/literature-based-writing-assistant.git
+cd literature-based-writing-assistant
 ```
 
 For an automated local bootstrap, open a new empty folder in Codex or OpenCode

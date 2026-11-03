@@ -1,0 +1,4 @@
+interface:
+  display_name: "Literature-Based Writing Assistant"
+  short_description: "Research, citations, and traceable academic writing"
+  default_prompt: "Use $literature-based-writing-assistant for this literature-based writing task."

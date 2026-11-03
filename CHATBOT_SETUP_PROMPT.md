@@ -6,8 +6,8 @@ from a repository created with **Use this template**.
 
 ---
 
-Set up the current folder as a local research-manuscript project based on the
-public `zotero-overleaf-research-agent` template.
+Set up the current folder as a local literature-based academic writing project
+based on the public `literature-based-writing-assistant` template.
 
 Before you change anything, ask me exactly this question: “Do you have a
 GitHub account and are you signed in? If yes, you can create a repository with
@@ -19,7 +19,7 @@ and am signed in. If I choose that option, ask for its clone URL before doing
 anything else. The URL must be for my newly created repository, not this
 template repository. If I do not have an account, am not signed in, or choose
 ZIP, use the public template archive at
-`https://github.com/jianlins/zotero-overleaf-research-agent/archive/refs/heads/main.zip`.
+`https://github.com/jianlins/literature-based-writing-assistant/archive/refs/heads/main.zip`.
 
 This prompt authorizes you to download the public ZIP or clone that supplied
 public repository, create and edit files inside this project, install the
@@ -62,7 +62,7 @@ Work through this procedure and report the final checklist.
      dotfiles, into the current folder without overwriting anything. Only after
      confirming the files are present at the project root, remove the temporary
      ZIP and the now-empty extracted wrapper directory. Do not leave the
-     project nested under `zotero-overleaf-research-agent-*`.
+     project nested under `literature-based-writing-assistant-*`.
 
    If `git` is unavailable for the GitHub repository route, report that Git must
    be installed by me (or ask whether I want help installing it) and stop. If
@@ -74,7 +74,7 @@ Work through this procedure and report the final checklist.
    `WORKSPACE_LAYOUT.md`, and `.agents/` are now present. If any are missing,
    stop and report the failed bootstrap check. Then read `README.md`,
    `AGENTS.md`, `WORKSPACE_LAYOUT.md`, and
-   `.agents/agents/zotero-overleaf-research-agent/AGENT.md`. Treat their
+   `.agents/agents/literature-based-writing-assistant/AGENT.md`. Treat their
    instructions as project policy for all later work. Preserve the cloned Git
    configuration when using the GitHub repository route; do not initialize a new
    repository for the ZIP route, alter the template workflow, or configure a

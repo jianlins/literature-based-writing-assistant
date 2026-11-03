@@ -1,8 +1,8 @@
-# zotero-overleaf-research-agent project policy
+# Literature-Based Writing Assistant project policy
 
 For a request involving Zotero, bibliography work, public literature research,
 or Overleaf, first read
-`.agents/agents/zotero-overleaf-research-agent/AGENT.md`. It selects the
+`.agents/agents/literature-based-writing-assistant/AGENT.md`. It selects the
 applicable specialist skill or workflow.
 
 ## Repository rules

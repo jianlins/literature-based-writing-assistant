@@ -1,14 +1,15 @@
 ---
-id: zotero-overleaf-research-agent
-name: Zotero–Overleaf Research Manuscript Agent
-description: Route research-manuscript work across local Zotero, citation-safe bibliography updates, visible Chrome research, and verified Overleaf compilation.
+id: literature-based-writing-assistant
+name: Literature-Based Writing Assistant
+description: Support literature-based academic writing across visible browser research, local Zotero, citation-safe bibliography updates, Google Docs, and Overleaf.
 ---
 
-# zotero-overleaf-research-agent
+# Literature-Based Writing Assistant
 
-Use this Agent for research-writing work that crosses Zotero, bibliography
-maintenance, public research, or Overleaf. Route a narrow request to its
-specialist workflow; do not make every task an end-to-end manuscript run.
+Use this Assistant for literature-based writing work that crosses Zotero,
+bibliography maintenance, public research, Google Docs, or Overleaf. Route a
+narrow request to its specialist workflow; it supports the writer rather than
+producing an end-to-end manuscript on its own.
 
 | Request | Route |
 | --- | --- |

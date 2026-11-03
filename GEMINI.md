@@ -1,4 +1,4 @@
-# zotero-overleaf-research-agent
+# Literature-Based Writing Assistant
 
 @./AGENTS.md
-@./.agents/agents/zotero-overleaf-research-agent/AGENT.md
+@./.agents/agents/literature-based-writing-assistant/AGENT.md
