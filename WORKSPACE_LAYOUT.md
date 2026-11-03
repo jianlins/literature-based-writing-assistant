@@ -13,6 +13,8 @@ downloaded source files and machine-generated full text as local caches.
 | `plans/` | Yes | Bounded execution plans. Use `YYYY-MM-DD-topic.md`; retain completed plans as an audit trail. |
 | `handoffs/` | Yes | Continuation briefs for another person or agent: current state, completed work, next actions, verification commands, and open risks. Use `YYYY-MM-DD-topic.md`. |
 | `research-log.md` | Yes | Concise chronological record of searches, source checks, material decisions, and claim verification. |
+| `config/browser-profile.example.json` | Yes | Editable example for the dedicated Chrome profile selection. |
+| `config/browser-profile.local.json` | No | Machine-local name, CDP port, and absolute path for the user-selected dedicated Chrome profile; copy the example to create it. |
 | `.agents/` | Yes | Template-maintenance automation only; never put project research artifacts here. |
 
 ## Operating rules
@@ -63,6 +65,11 @@ downloaded source files and machine-generated full text as local caches.
   create a handoff when a different person or agent must resume the work.
 - Keep `research-log.md` factual and short: date, action, source or query,
   result, and consequential decision.
+- For browser/CDP work, configure the user-selected dedicated Chrome profile in
+  `config/browser-profile.local.json`. It is local-only: store its path and
+  CDP port, not cookies or credentials. Start from
+  `config/browser-profile.example.json` and update the local file directly
+  when the selected profile or port changes.
 
 The four working directories (`references/`, `notes/`, `plans/`, and
 `handoffs/`) may begin empty. Their `.gitkeep` files preserve the shared

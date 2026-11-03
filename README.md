@@ -170,8 +170,12 @@ Zotero or manage PDF files. The exact command and review gate are in
 
 ### Starting the research browser
 
-Use the launcher for your operating system; each creates an isolated profile
-and uses CDP port 9222 by default.
+Use the launcher for your operating system. When
+`config/browser-profile.local.json` exists, each launcher uses its selected
+dedicated Chrome user-data directory; otherwise it creates a temporary
+isolated profile. Before launching, it checks whether a CDP browser already
+responds on the requested port and leaves that browser available for reuse.
+All use CDP port 9222 by default.
 
 ```bash
 # macOS
@@ -198,12 +202,20 @@ untracked `.codex/config.toml`. Codex starts the CDP bridge from that
 configuration with `npx`, so Node.js/npm must be available when that bridge is
 used; it downloads `chrome-devtools-mcp` on first use.
 
+To reuse a dedicated, signed-in browser profile across sessions, copy
+`config/browser-profile.example.json` to the ignored
+`config/browser-profile.local.json` and set its `user_data_dir` to the
+absolute path selected by the user. Its `cdp_port` selects the endpoint that
+the launchers check and use; an explicit launcher port option takes precedence.
+Keep it out of Git and use a normal browsing profile only with the user's
+explicit approval.
+
 The Windows launcher looks for `chrome.exe` on `PATH` and in Chrome's standard
 per-machine and per-user install locations. The Linux launcher looks for
 `google-chrome`, `google-chrome-stable`, `chromium`, or `chromium-browser` on
 `PATH`. If either launcher cannot find a browser, give the chatbot its full
 executable path; it can pass it safely with Windows `-ChromePath` or Linux
-`--chrome-path`. Do not give it browser-profile, login, or password details.
+`--chrome-path`. Do not put login details or passwords in project files.
 
 ## Publishing this folder
 

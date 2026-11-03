@@ -1,0 +1,5 @@
+{
+  "label": "Dedicated research browser",
+  "cdp_port": 9222,
+  "user_data_dir": "/absolute/path/to/a/dedicated/chrome-user-data-directory"
+}

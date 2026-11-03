@@ -1,5 +1,6 @@
 # Never commit local browser sessions, secrets, or generated TeX output.
 .codex/config.toml
+config/browser-profile.local.json
 .env
 .env.*
 !.env.example

@@ -29,7 +29,15 @@ other external changes without asking first. In particular, do not create or
 publish a GitHub repository, push commits, create an Overleaf project, sign in
 to any service, open or modify a normal browser profile, authorize a Zotero
 write, access a Zotero library, or ask for credentials, cookies, passwords,
-API keys, or a browser profile.
+or API keys.
+
+If I plan to write in Google Docs rather than Overleaf, tell me before the
+final readiness report that I must install the **Zotero Connector** Chrome
+extension in the Chrome profile I will use for Google Docs, then ensure that
+the Zotero desktop application is installed and running when I insert or edit
+citations. Do not install, enable, or sign in to the extension for me: opening
+or changing my normal Chrome profile requires my separate action. This is not
+needed for an Overleaf-only workflow.
 
 Work through this procedure and report the final checklist.
 
@@ -79,7 +87,17 @@ Work through this procedure and report the final checklist.
    invent an OpenCode configuration format. Do not run `npx`, start a browser,
    or connect to a Chrome DevTools endpoint as part of this setup.
 
-5. **Install and verify local research tools.** Install the supported
+5. **Configure the dedicated browser profile.** Ask whether I want to configure
+   a dedicated Chrome profile for future browser/CDP work. If I do, ask for its
+   absolute user-data-directory path and an optional descriptive name; do not
+   accept a normal browsing profile without my explicit approval. Create
+   `config/browser-profile.local.json` from
+   `config/browser-profile.example.json`, recording the supplied path and name
+   with CDP port `9222` unless I specify another port. If I decline, leave the
+   local file absent. Do not launch Chrome, inspect the selected profile, or
+   ask for cookies, credentials, or passwords.
+
+6. **Install and verify local research tools.** Install the supported
    user-level Zotero CLI and the project-declared Docling dependency together:
 
    ```sh
@@ -92,7 +110,7 @@ Work through this procedure and report the final checklist.
    returned secrets and library data private. Do not authorize or access
    Zotero, or configure a Zotero MCP server.
 
-6. **Verify the bibliography guard.** Confirm that
+7. **Verify the bibliography guard.** Confirm that
    `.agents/skills/zotero-cli/scripts/test_sync_zotero_bibliography.py` and
    `.agents/scripts/extract_pdf_to_markdown.py` exist.
 
@@ -104,13 +122,19 @@ Work through this procedure and report the final checklist.
 
    If Python is absent, report it as a missing prerequisite; do not install it.
 
-7. **Leave live services disconnected.** You may check Chrome and port 9222,
+8. **Leave live services disconnected.** You may check Chrome and port 9222,
    but do not launch Chrome or log in. For a later Overleaf request, use the
-   OS-specific launcher in `.agents/scripts/`; if it cannot find Chrome, ask
-   for its executable path only.
+   OS-specific launcher in `.agents/scripts/` rather than opening Chrome
+   directly. It checks for an existing CDP browser on the requested port before
+   launching a new instance; if it cannot find Chrome, ask for its executable
+   path only.
 
-8. **Report readiness.** Report the selected bootstrap method; the Git
+9. **Report readiness.** Report the selected bootstrap method; the Git
    revision and remote (or that the ZIP route intentionally has no Git
-   checkout); whether configuration was created or preserved; the status of
+   checkout); whether Codex and browser-profile configuration was created,
+   preserved, or declined; the status of
    Git, uv, `zotero-cli`, Python, the test, Chrome, and port 9222; and each
-   missing prerequisite. State that Zotero and Overleaf remain unconnected.
+   missing prerequisite. State that Zotero and Overleaf remain unconnected. If
+   I intend to use Google Docs, also repeat the Zotero Connector prerequisite
+   and that it must be installed in my Chrome profile before using Zotero
+   citations in Google Docs.

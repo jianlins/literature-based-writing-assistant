@@ -16,6 +16,7 @@ specialist workflow; do not make every task an end-to-end manuscript run.
 | Existing manuscript bibliography | The project's citation guard, if installed; otherwise preserve used keys and request a reviewable merge |
 | Public literature search | `.agents/skills/visible-research-cdp/SKILL.md`, then the Zotero CLI skill for each relevant paper |
 | Overleaf source or compilation | `.agents/skills/overleaf-cdp/SKILL.md` |
+| Google Docs writing or native Zotero citations | `.agents/skills/google-docs-zotero/SKILL.md` |
 
 ## Identity rules
 
