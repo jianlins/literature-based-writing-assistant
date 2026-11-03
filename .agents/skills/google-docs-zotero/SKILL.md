@@ -19,8 +19,20 @@ insert or review citations, or prepare a Google Docs manuscript for delivery.
 - Do not unlink citations in a working document. Only unlink citations in a
   user-approved final copy.
 - Before editing a shared document, confirm that it is the intended document
-  and that the user has edit access. If citation editing is required, Zotero
-  desktop must be running and the Connector must be installed.
+  and that the user has edit access.
+
+## Citation readiness
+
+Before the first citation or bibliography action in a browser profile, verify
+that Zotero Desktop is running and the active Chrome profile has the official
+Zotero Connector enabled. In the target Google Doc, confirm that the **Zotero**
+menu exposes **Add/Edit Citation**.
+
+If the Connector or the Google Docs Zotero menu is unavailable, pause
+citation-related editing and ask the user to install or enable the official
+Zotero Connector in that Chrome profile, then reopen the document. Resume only
+after the menu is available. Non-citation prose edits may proceed if the user
+still wants them.
 
 ## Verification checklist
 
