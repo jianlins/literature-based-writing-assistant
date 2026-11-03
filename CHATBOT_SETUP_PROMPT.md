@@ -66,9 +66,9 @@ Work through this procedure and report the final checklist.
      ZIP and the now-empty extracted wrapper directory. Do not leave the
      project nested under `literature-based-writing-assistant-*`.
 
-   If `git` is unavailable for the GitHub repository route, report that Git must
-   be installed by me (or ask whether I want help installing it) and stop. If
-   public network access is unavailable, report the exact failed command and
+   `git` is required for either route. If it is unavailable, report that Git
+   must be installed by me (or ask whether I want help installing it) and stop.
+   If public network access is unavailable, report the exact failed command and
    the next local action needed; do not substitute an unverified mirror or
    fabricate files.
 
@@ -79,9 +79,15 @@ Work through this procedure and report the final checklist.
    `AGENTS.md`, `WORKSPACE_LAYOUT.md`, and
    `.agents/agents/literature-based-writing-assistant/AGENT.md`. Treat their
    instructions as project policy for all later work. Preserve the cloned Git
-   configuration when using the GitHub repository route; do not initialize a new
-   repository for the ZIP route, alter the template workflow, or configure a
-   Zotero MCP server.
+   configuration when using the GitHub repository route. For the ZIP route,
+   initialize a local Git repository at the project root after extraction so
+   later edits can be identified and compared with `git status` and `git diff`.
+   Create an initial local baseline commit containing the extracted template;
+   do not add a remote, publish it, push it, or alter the template workflow.
+   If Git lacks a configured author identity for that local commit, keep the
+   repository initialized, report the missing identity, and ask me how I want
+   to provide it rather than changing my global Git configuration. Do not
+   configure a Zotero MCP server.
 
 4. **Create local Codex configuration safely.** If `.codex/config.toml` does
    not exist, copy it from `.codex/config.toml.example`. If it already exists,
@@ -133,9 +139,8 @@ Work through this procedure and report the final checklist.
    path only.
 
 9. **Report readiness.** Report the selected project-initialization method;
-   the Git
-   revision and remote (or that the ZIP route intentionally has no Git
-   checkout); whether Codex and browser-profile configuration was created,
+   the Git revision and remote (or, for the ZIP route, the local baseline
+   revision and that it intentionally has no remote); whether Codex and browser-profile configuration was created,
    preserved, or declined; the status of
    Git, uv, `zotero-cli`, Python, the test, Chrome, and port 9222; and each
    missing prerequisite. State that Zotero and Overleaf remain unconnected. If
