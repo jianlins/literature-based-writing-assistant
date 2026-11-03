@@ -1,4 +1,4 @@
-# Copy-paste bootstrap prompt
+# Copy-paste project-initialization prompt
 
 Open Codex or OpenCode in a new, empty project folder and paste the complete
 prompt below. The assistant will ask whether to start from the template ZIP or
@@ -12,7 +12,8 @@ based on the public `literature-based-writing-assistant` template.
 Before you change anything, ask me exactly this question: “Do you have a
 GitHub account and are you signed in? If yes, you can create a repository with
 **Use this template**; otherwise, choose the template ZIP. Which would you
-like to use?” Do not download, clone, or otherwise bootstrap until I answer.
+like to use?” Do not download, clone, or otherwise initialize the project until
+I answer.
 
 Use the GitHub repository option only if I confirm that I have a GitHub account
 and am signed in. If I choose that option, ask for its clone URL before doing
@@ -44,7 +45,8 @@ Work through this procedure and report the final checklist.
 1. **Protect the target folder.** Before downloading or cloning, confirm that
    the current directory is empty apart from harmless editor or OS placeholders
    (for example `.DS_Store`), the downloaded ZIP itself, and temporary files
-   you created for this bootstrap. If it contains a real project, source files,
+   you created during project initialization. If it contains a real project,
+   source files,
    a Git repository, or anything whose ownership is unclear, stop and ask me
    to choose a different empty folder. Never merge, delete, or overwrite such
    files.
@@ -72,7 +74,8 @@ Work through this procedure and report the final checklist.
 
 3. **Confirm the result and read policy.** Confirm `README.md`, `AGENTS.md`,
    `WORKSPACE_LAYOUT.md`, and `.agents/` are now present. If any are missing,
-   stop and report the failed bootstrap check. Then read `README.md`,
+   stop and report the failed project-initialization check. Then read
+   `README.md`,
    `AGENTS.md`, `WORKSPACE_LAYOUT.md`, and
    `.agents/agents/literature-based-writing-assistant/AGENT.md`. Treat their
    instructions as project policy for all later work. Preserve the cloned Git
@@ -129,7 +132,8 @@ Work through this procedure and report the final checklist.
    launching a new instance; if it cannot find Chrome, ask for its executable
    path only.
 
-9. **Report readiness.** Report the selected bootstrap method; the Git
+9. **Report readiness.** Report the selected project-initialization method;
+   the Git
    revision and remote (or that the ZIP route intentionally has no Git
    checkout); whether Codex and browser-profile configuration was created,
    preserved, or declined; the status of
