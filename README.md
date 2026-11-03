@@ -112,12 +112,11 @@ report or correct any uncertain source before sharing the manuscript.
 
 ## Get started
 
-1. Create a project with **Use this template**, or download the ZIP and open
-   the folder in Codex, OpenCode, or another supported assistant.
-2. Tell the assistant what you are writing and what you need—for example,
+1. Open Codex, OpenCode, or another supported assistant in a new, empty folder.
+2. Copy and paste [`CHATBOT_SETUP_PROMPT.md`](CHATBOT_SETUP_PROMPT.md) into the
+   chat, then follow its guidance to set up your project.
+3. Tell the assistant what you are writing and what you need—for example,
    “Help me find and screen relevant literature for the following paragraph.”
-3. The assistant will guide any one-time setup and carry out the project
-   workflow. It will ask when it needs your choice, permission, or review.
 
 You do not need to run the project commands yourself. The agent instructions
 handle browser research, Zotero, PDF text extraction, bibliography updates, and
