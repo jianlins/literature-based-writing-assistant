@@ -58,14 +58,11 @@ verify, rather than importing them into a manuscript unchecked.
 
 ![Diagram of the architecture for literature-based academic writing](docs/assets/research-architecture.svg)
 
-Chatbot apps such as Codex, Antigravity, and OpenCode coordinate the work; they
-do not replace the researcher's judgment. They connect visible browser-based
-research, a Zotero library that remains the bibliographic source of truth, the
-versioned local project folder, and the writing surface that fits the project:
-Google Docs for collaborative drafting or Overleaf for compile-verified LaTeX.
-Specialist skills provide the controlled connections for browser research,
-Zotero, Google Docs, and Overleaf, while local-only configuration keeps browser
-profiles and credentials outside Git.
+This setup brings agents, skills, and research tools together to support
+literature-based writing. It can reduce manual work—such as navigating search
+results, organizing sources, and identifying papers for review—so you can focus
+on evaluating the literature, developing ideas, and writing. Zotero remains the
+source of truth for references; browser profiles and credentials stay local.
 
 ### Limits and required human checks
 
@@ -113,196 +110,32 @@ report or correct any uncertain source before sharing the manuscript.
 - `CHATBOT_SETUP_PROMPT.md`: a platform-neutral setup prompt to paste into
   Codex or OpenCode after creating a project from this template.
 
-## Use it
+## Get started
 
-Choose the starting path that fits your project:
+1. Create a project with **Use this template**, or download the ZIP and open
+   the folder in Codex, OpenCode, or another supported assistant.
+2. Tell the assistant what you are writing and what you need—for example,
+   “Help me find and screen relevant literature for the following paragraph.”
+3. The assistant will guide any one-time setup and carry out the project
+   workflow. It will ask when it needs your choice, permission, or review.
 
-1. **Creating a GitHub-backed project (recommended):** on this repository's
-   GitHub page, select **Use this template** and create your new repository.
-   This copies the template files into your repository without making this
-   template's development history your project history. Clone *your new
-   repository* afterward if you want a local checkout.
-2. **Starting without Git history:** use GitHub's **Download ZIP** option,
-   extract it, and open the extracted folder in your coding assistant. This is
-   the cleanest option when you do not need a repository yet.
-3. **Using Git directly:** only when a local checkout of this template itself
-   is useful, make it shallow so you do not fetch its full history:
+You do not need to run the project commands yourself. The agent instructions
+handle browser research, Zotero, PDF text extraction, bibliography updates, and
+Google Docs or Overleaf workflows.
 
-```bash
-git clone --depth 1 https://github.com/jianlins/literature-based-writing-assistant.git
-cd literature-based-writing-assistant
-```
+Keep your manuscript and `references.bib` at the project root, and keep notes
+in `notes/`. Treat `.agents/` as template infrastructure. See
+[`WORKSPACE_LAYOUT.md`](WORKSPACE_LAYOUT.md) only when you need the complete
+file-layout reference.
 
-For an automated local bootstrap, open a new empty folder in Codex or OpenCode
-and paste [`CHATBOT_SETUP_PROMPT.md`](CHATBOT_SETUP_PROMPT.md). It first asks
-whether the user has a signed-in GitHub account: use **Use this template** only
-when they do; otherwise use the ZIP. The ZIP route downloads and safely
-flattens the template archive; the repository route shallow-clones the new
-repository after collecting its clone URL. It performs the local setup and
-explains any machine-specific prerequisite that still needs you; it never
-creates or publishes a GitHub repository.
+## Your role
 
-### Where your work belongs
+The assistant can help search, organize, and screen literature, but you decide
+which sources and claims belong in the work. Review sources and citations before
+sharing a manuscript, and approve any requested access or Zotero changes.
 
-Treat `.agents/` as internal, versioned automation: do not move or edit it
-unless you are maintaining the template. Put your manuscript and bibliography
-at the project root, research PDFs and extracted Markdown in `references/`,
-and personal working notes in `notes/` (create it when needed). This keeps
-your research material separate from the template's tooling.
+## Publishing
 
-[`WORKSPACE_LAYOUT.md`](WORKSPACE_LAYOUT.md) defines the full directory
-contract, including plans, handoffs, the research log, and which artifacts stay
-local rather than entering Git.
-
-### Extracting PDF text
-
-The template includes a controlled PDF-to-Markdown command based on Docling.
-It preserves reading order and tables where possible. The configured converter
-runs locally; it does not call an LLM or a paid model API.
-
-```bash
-uv run --python 3.12 \
-  --with-requirements .agents/requirements-pdf-extraction.txt \
-  python .agents/scripts/extract_pdf_to_markdown.py \
-  --input references/pdf/ZOTEROITEMKEY.pdf
-```
-
-It writes `references/markdown/ZOTEROITEMKEY.md` by default, refuses to
-overwrite it without `--force`, and reports when a scanned PDF must be OCRed
-first. OCR is opt-in through `--ocr` after local Docling OCR setup. Docling
-requires Python 3.10+; `uv` supplies Python 3.12 in the command above. See
-[`WORKSPACE_LAYOUT.md`](WORKSPACE_LAYOUT.md) for the full contract and OCR
-model-license review requirement.
-
-### Updating the manuscript bibliography
-
-The canonical BibLaTeX file is `references.bib` at the project root. The
-Zotero guard reads the local Zotero API, dry-runs a merge, and writes only the
-local bibliography and its ignored key lock after `--apply`; it does not modify
-Zotero or manage PDF files. The exact command and review gate are in
-[`WORKSPACE_LAYOUT.md`](WORKSPACE_LAYOUT.md).
-
-### Starting the research browser
-
-Use the launcher for your operating system. When
-`config/browser-profile.local.json` exists, each launcher uses its selected
-dedicated Chrome user-data directory; otherwise it creates a temporary
-isolated profile. Before launching, it checks whether a CDP browser already
-responds on the requested port and leaves that browser available for reuse.
-All use CDP port 9222 by default.
-
-```bash
-# macOS
-zsh .agents/scripts/start-research-chrome.sh
-```
-
-```bash
-# Linux
-bash .agents/scripts/start-research-chrome-linux.sh
-```
-
-```powershell
-# Windows PowerShell
-powershell -ExecutionPolicy Bypass -File .\.agents\scripts\start-research-chrome.ps1
-
-# Or from Command Prompt
-.\.agents\scripts\start-research-chrome.cmd
-```
-
-The Linux and Windows launchers accept `--port PORT` and `-Port PORT`,
-respectively. The macOS launcher accepts `--port PORT`. When using a port
-other than 9222, make the same change to the browser URL in the local,
-untracked `.codex/config.toml`. Codex starts the CDP bridge from that
-configuration with `npx`, so Node.js/npm must be available when that bridge is
-used; it downloads `chrome-devtools-mcp` on first use.
-
-To reuse a dedicated, signed-in browser profile across sessions, copy
-`config/browser-profile.example.json` to the ignored
-`config/browser-profile.local.json` and set its `user_data_dir` to the
-absolute path selected by the user. Its `cdp_port` selects the endpoint that
-the launchers check and use; an explicit launcher port option takes precedence.
-Keep it out of Git and use a normal browsing profile only with the user's
-explicit approval.
-
-The Windows launcher looks for `chrome.exe` on `PATH` and in Chrome's standard
-per-machine and per-user install locations. The Linux launcher looks for
-`google-chrome`, `google-chrome-stable`, `chromium`, or `chromium-browser` on
-`PATH`. If either launcher cannot find a browser, give the chatbot its full
-executable path; it can pass it safely with Windows `-ChromePath` or Linux
-`--chrome-path`. Do not put login details or passwords in project files.
-
-## Publishing this folder
-
-Publish the contents of this directory as the root of a dedicated GitHub
-repository. Before publishing, select a license deliberately; none is included
-because licensing is a project-owner decision. Keep `.codex/config.toml` out
-of Git even when it currently contains no secret, so local port or command
-customizations do not become repository policy.
-
-## Zotero design
-
-This template uses `zotero-cli` directly rather than registering a Zotero MCP
-server. The CLI and its project skill originate from the third-party
-`zotero-mcp-server` project, but normal use is a direct local command path:
-
-```text
-assistant → zotero-cli → Zotero Desktop Local API → Zotero library
-```
-
-### Install local tools
-
-After installing [uv](https://docs.astral.sh/uv/), install the Zotero CLI and
-the converter dependency together with one command:
-
-```bash
-uv tool install "zotero-mcp-server[pdf]==0.13.2" \
-  --with-requirements .agents/requirements-pdf-extraction.txt
-zotero-cli config
-python3 .agents/skills/zotero-cli/scripts/test_sync_zotero_bibliography.py
-```
-
-This installs the free, open-source Docling package alongside the CLI. PDF
-conversion remains local and does not incur LLM or model-API charges. The test
-uses only a temporary localhost fake API and does not inspect Zotero data. A
-setup assistant should report a missing `uv` and request permission before
-installing it or these packages.
-
-That is more portable across local coding assistants and avoids loading MCP
-tools when they are unnecessary. A local write/export requires the same command
-environment to reach Zotero's localhost API. If a sandbox blocks localhost,
-the CLI can read local index data yet fail writes or bibliography rendering;
-run the command in a permitted local context instead. `zotero-mcp authorize-local`
-may be used solely to grant the package local write access—it
-does not require adding an MCP server to project configuration.
-
-### User confirmation for Zotero writes
-
-The first direct CLI write may require local authorization. After an assistant
-or user runs:
-
-```bash
-zotero-mcp authorize-local
-```
-
-Zotero Desktop displays its own authorization dialog. The user must personally
-review and select the option; an assistant must not assume, simulate, or bypass
-that confirmation.
-
-- **Allow** grants a single-use key. It expires with the authorization command,
-  so it normally cannot authorize a later, separate `zotero-cli` command.
-- **Always Allow** grants the package a reusable local write key for future CLI
-  commands. Select it only after deciding that this installed package should be
-  allowed to modify the local Zotero library.
-- **Deny** leaves the library read-only to this tool.
-
-This is a local Zotero API permission, not a request to configure or start a
-Zotero MCP server. Until the user has completed the appropriate authorization,
-use read-only CLI operations or update `references.bib` manually.
-
-## Bibliography guard
-
-Use `.agents/skills/zotero-cli/scripts/sync_zotero_bibliography.py` for a dry-run before applying a
-Zotero collection update to an established BibLaTeX bibliography. Store its
-machine-local lock in `.zotero/citation-key-lock.json`; do not commit it, as it
-contains a Zotero database identifier and item-key mapping.
-
+Publish this folder as the root of a dedicated repository if you want to share
+the project. Choose a license before publishing; local browser profiles,
+credentials, and configuration stay out of Git.

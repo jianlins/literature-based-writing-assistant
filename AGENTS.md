@@ -12,6 +12,11 @@ the repository. Do not commit TeX build output, browser profiles, `.env` files,
 credentials, or local CDP port choices. Keep every externally visible claim
 traceable to a source.
 
+Users work through the chat, not project commands. Lead with their writing or
+research goal; handle routine setup and workflow steps using the applicable
+instructions. Surface only choices, permissions, and source checks that require
+the researcher's judgment.
+
 Before launching Chrome for any browser or CDP workflow, inspect the available
 connected CDP sessions and tabs and reuse a suitable one. When a new instance
 is needed, read `config/browser-profile.local.json` and use its selected
