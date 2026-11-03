@@ -9,6 +9,11 @@ Use visible Chrome/CDP for public literature searches. Reuse the dedicated
 research-browser tab or start the isolated research browser; preserve the
 user's normal Chrome profile and tabs.
 
+Reuse tabs created for the current research task where practical to limit
+browser memory use. Close task-created tabs once they are superseded or no
+longer needed, except for a search-results tab that will support planned
+follow-up searches. Never close user-owned tabs.
+
 When a browser must be started, use
 `.agents/scripts/start-research-chrome.sh` on macOS,
 `.agents/scripts/start-research-chrome-linux.sh` on Linux, or
@@ -23,4 +28,5 @@ on Linux or `-ChromePath` on Windows.
 3. Capture the source details needed to support the requested claim.
 4. If a site requires human verification, leave its visible tab open and ask
    the user to complete it. Continue after the user confirms access.
-5. Close only tabs created for this task when the research is complete.
+5. Close any remaining tabs created for this task when the research is
+   complete, unless the user asks to keep them open.
